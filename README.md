@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Site para a empresa de Jóias de Edu
 
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
+  2.4
 
 * Configuration
-
-* Database creation
+  imagemagick
 
 * Database initialization
+    MySQL
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Gems
+  
+  gem 'simple_form', '~> 3.4'
+  gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+  gem 'sass-rails', '~> 5.0'
+  gem 'devise', '~> 4.2', '>= 4.2.1'
+  gem 'paperclip', '~> 5.1'
