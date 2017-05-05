@@ -1,2 +1,5 @@
-<h1>Jewels#index</h1>
-<p>Find me in app/views/jewels/index.html.erb</p>
+<% @jewels.each do |jewel| %>
+  <h2><%= link_to jewel.title, jewel_path(jewel) %></h2>
+<% end %>
+
+<%= link_to "Add Jóia", new_jewel_path %>

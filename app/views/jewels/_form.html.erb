@@ -1,0 +1,8 @@
+<%= simple_form_for @jewel do |f| %>
+ <%= f.input :title, label: "Nome da Jóia" %>
+ <%= f.input :description, label: "Descrição" %>
+ <%= f.button :submit, "Salvar" %>
+<% end %>
+
+</br>
+<%= link_to "Voltar", root_path %>
