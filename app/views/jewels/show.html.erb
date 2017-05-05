@@ -1,2 +1,12 @@
 <h2><%= @jewel.title %></h2>
-  <p><%= @jewel.description %></p>
+<h4>Categoria: <%= @jewel.category.name %></h4>
+<p><%= @jewel.description %></p>
+
+
+<% if user_signed_in? %>
+  <%= link_to "Voltar", root_path %>
+  <% if @jewel.user_id == current_user.id %>
+    <%= link_to "Editar", edit_jewel_path(@jewel) %>
+    <%= link_to "Deletar", jewel_path(@jewel), method: :delete, data: { confirm: "Tem certeza que deseja remover este item?"} %>
+  <% end %>
+<% end %>

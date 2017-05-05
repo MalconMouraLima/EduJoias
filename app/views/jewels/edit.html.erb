@@ -1,5 +1,7 @@
+<h1>Editar Jóia</h1>
+
 <%= simple_form_for @jewel, :html => { :multipart => true } do |f| %>
- <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Selecione uma categoria...") %>
+ <%= f.select :category_id, @categories %>
  <%= f.file_field :jewel_img %>
  <%= f.input :title, label: "Nome da Jóia" %>
  <%= f.input :description, label: "Descrição" %>

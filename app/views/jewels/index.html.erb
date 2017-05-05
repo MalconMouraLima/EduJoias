@@ -1,5 +1,23 @@
-<% @jewels.each do |jewel| %>
-  <h2><%= link_to jewel.title, jewel_path(jewel) %></h2>
-<% end %>
+<h1 class="current-category"><%= params[:category] %></h1>
 
-<%= link_to "Add Jóia", new_jewel_path %>
+<% if @jewels.count == 0 %>
+
+  <h1> Não tem nenhuma jóia nessa categoria </h1>
+
+<% else %>
+
+<div class="row">
+
+  <% @jewels.each do |jewel| %>
+
+    <div class="col-md-3">
+      <a href="/jewels/<%= jewel.id %>">
+        <%= image_tag jewel.jewel_img.url(:jewel_index), class: "jewel" %>
+      </a>
+    </div>
+
+  <% end %>
+
+</div>
+
+<% end %>
