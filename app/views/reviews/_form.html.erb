@@ -1,0 +1,19 @@
+<%= simple_form_for([@jewel, @jewel.reviews.build]) do |f| %>
+	<div id="rating-form">
+		<h1>Comentário</h1>
+	</div>
+	<p>
+	<%= f.input :comment, label: false %>
+	<%= f.button :submit, "Salvar", :class => "btn-custom2" %>
+<% end %>
+
+</br>
+<%= link_to "Voltar", jewel_path(@jewel), class: "btn btn-custom" %>
+
+
+<script>
+	$('#rating-form').raty({
+		path: '/assets/',
+		scoreName: 'review[rating]'
+	});
+</script>

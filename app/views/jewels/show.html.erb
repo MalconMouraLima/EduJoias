@@ -1,12 +1,82 @@
-<h2><%= @jewel.title %></h2>
-<h4>Categoria: <%= @jewel.category.name %></h4>
-<p><%= @jewel.description %></p>
+<div class="row">
+
+	<div class="col-md-4">
+
+		<%= image_tag @jewel.jewel_img.url(:jewel_show), class: "jewel-show" %>
+
+	</div>
+
+	<div class="col-md-8">
+
+		<div class="jewel-info">
+
+			<h2 class="jewel-title"><%= @jewel.title %></h2>			
+			<div class="average-review-rating" data-score=<%= @average_review %>></div>
+			<span class="number-of-reviews">Baseado em <%= @jewel.reviews.count %> comentário(s) </span>
+			<p class="jewel-desc"><%= @jewel.description %></p>
+
+		</div>
+	</div>
 
 
-<% if user_signed_in? %>
-  <%= link_to "Voltar", root_path %>
-  <% if @jewel.user_id == current_user.id %>
-    <%= link_to "Editar", edit_jewel_path(@jewel) %>
-    <%= link_to "Deletar", jewel_path(@jewel), method: :delete, data: { confirm: "Tem certeza que deseja remover este item?"} %>
-  <% end %>
-<% end %>
+</div>
+
+
+<div class="row">
+
+	<div class="col-md-4">
+
+		<div class="reviews">
+
+			<!-- Where the reviews/ratings will go -->
+			<h1>Comentários</h1>
+			<%= render @jewel.reviews %>
+
+			<div>
+				<%= link_to "Comentar", new_jewel_review_path(@jewel), class: "btn-custom" %>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="links btn-group">
+
+	<%= link_to "Voltar", root_path, class: "btn btn-custom" %>
+
+	<% if user_signed_in? %>
+
+		<% if @jewel.user_id == current_user.id %>
+
+			<%= link_to "Editar", edit_jewel_path(@jewel), class: "btn btn-custom" %>
+			<%= link_to "Deletar", jewel_path(@jewel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+		<% end %>
+
+	<% end %>
+
+</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>

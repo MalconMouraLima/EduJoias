@@ -1,8 +1,9 @@
 <h1 class="current-category"><%= params[:category] %></h1>
 
+</br></br>
 <% if @jewels.count == 0 %>
 
-  <h1> Não tem nenhuma jóia nessa categoria </h1>
+  <h1> Não possui jóias nesta categoria </h1>
 
 <% else %>
 
@@ -11,9 +12,11 @@
   <% @jewels.each do |jewel| %>
 
     <div class="col-md-3">
+
       <a href="/jewels/<%= jewel.id %>">
         <%= image_tag jewel.jewel_img.url(:jewel_index), class: "jewel" %>
       </a>
+
     </div>
 
   <% end %>

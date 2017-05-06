@@ -1,6 +1,6 @@
 class JewelsController < ApplicationController
-  before_action :find_jewel, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_jewel, only: [:show, :edit, :update, :destroy]  
+  before_action :authenticate_user!, only: [:new, :edit]
   def index
     if params[:category].blank?
       @jewels = Jewel.all.order("created_at DESC")
@@ -11,6 +11,11 @@ class JewelsController < ApplicationController
   end
 
   def show
+    if @jewel.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @jewel.reviews.average(:rating).round(2)
+    end
   end
 
   def new
@@ -55,7 +60,7 @@ class JewelsController < ApplicationController
   end
 
   def find_jewel
-			@jewel = Jewel.find(params[:id])
-		end
+		@jewel = Jewel.find(params[:id])
+	end
 
 end

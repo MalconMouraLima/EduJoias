@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :jewels
-
-  root 'jewels#index'
+    resources :jewels do
+    	resources :reviews
+    end
+    root 'jewels#index'
 end
