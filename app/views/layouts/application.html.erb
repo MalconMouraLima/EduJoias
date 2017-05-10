@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -27,29 +28,22 @@
 				<% end %>
 			</ul>
 
-      <ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right">
 
-        <li class="dropdown mega-dropdown active">
-			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <span class="caret"></span></a>
-				<div class="dropdown-menu mega-dropdown-menu">
-          <div class="container-fluid">
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div class="tab-pane active">
-                <ul class="nav-list list-inline">
-                  <% Category.all.each do |category| %>
-      							<li class="<%= 'active' if params[:category] == category.name %>">
-      								<%= link_to category.name, jewels_path(category: category.name), class: "link" %>
-      							</li>
-      						<% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorias <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<% Category.all.each do |category| %>
+							<li class="<%= 'active' if params[:category] == category.name %>">
+								<%= link_to category.name, jewels_path(category: category.name), class: "link" %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
 
-				<% if user_signed_in? %>
-          <% @user = User.find(current_user.id) %>            
+
+        <% if user_signed_in? %>
+          <% @user = User.find(current_user.id) %>
             <% if @user.user_admin? %>
 				    	<li><%= link_to "Add Jóias", new_jewel_path %></li>
             <% end %>
@@ -67,6 +61,27 @@
     <div class="container"
       <%= yield %>
     </div>
+
+    <!-- Social Footer, Colour Matching Icons -->
+    <!-- Include Font Awesome Stylesheet in Header -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <!-- // -->
+    <div class="container">
+    <h3>Contato</h3>
+        <hr>
+            <div class="text-center center-block">
+                <p class="txt-railway"> Redes Sociais </p>
+                <br />
+                  <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+    	            <a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+    	            <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+    	            <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+    </div>
+        <hr>
+    </div>
+
+
   </body>
 </html>
 
