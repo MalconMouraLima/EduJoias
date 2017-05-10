@@ -45,14 +45,12 @@
 
 <div class="links btn-group">
 
-	<%= link_to "Voltar", root_path, class: "btn btn-custom" %>
-
 	<% if user_signed_in? %>
 
 		<% if @jewel.user_id == current_user.id %>
 
 			<%= link_to "Editar", edit_jewel_path(@jewel), class: "btn btn-custom" %>
-			<%= link_to "Deletar", jewel_path(@jewel), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+			<%= link_to "Deletar", jewel_path(@jewel), method: :delete, data: { confirm: "Te mcerteza que deseja remover esse item?" }, class: "btn btn-custom" %>
 
 		<% end %>
 
