@@ -6,105 +6,83 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
 
   <body>
 
-    <nav class="navbar navbar-default">
-
-		<div class="container">
-
-			<div class="navbar-header">
-				<%= link_to "Edu Jóias", root_path, class: "navbar-brand" %>
-			</div>
-
-      <ul class="nav navbar-nav">
-				<li><%= link_to "Cadastre-se", new_user_registration_path %></li>
-				<% if user_signed_in? %>
-					<li><%= link_to "Log Off", destroy_user_session_path, method: :delete %></li>
-				<% else %>
-					<li><%= link_to "Log In", new_user_session_path %></li>
+    <!-- Dropdown Structure -->
+      <ul id="dropdown1" class="dropdown-content">
+        <% Category.all.each do |category| %>
+					<li class="<%= 'active' if params[:category] == category.name %>">
+						<%= link_to category.name, jewels_path(category: category.name), class: "link" %>
+					</li>
 				<% end %>
-			</ul>
+      </ul>
+      <div id="navbar" class="navbar-fixed scrollspy">
 
-			<ul class="nav navbar-nav navbar-right">
-
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorias <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<% Category.all.each do |category| %>
-							<li class="<%= 'active' if params[:category] == category.name %>">
-								<%= link_to category.name, jewels_path(category: category.name), class: "link" %>
-							</li>
-						<% end %>
-					</ul>
-				</li>
-
-
-        <% if user_signed_in? %>
-          <% @user = User.find(current_user.id) %>
-            <% if @user.user_admin? %>
-				    	<li><%= link_to "Add Jóias", new_jewel_path %></li>
-            <% end %>
-				<% end %>
+        <nav>
+          <div class="navbar-fixed scrollspy red lighten-3">
+            <a href="#" class="brand-logo">Edu Jóias </a>
+            <ul class="right hide-on-med-and-down">
+              <li><%= link_to "Cadastre-se", new_user_registration_path %></li>
+        				<% if user_signed_in? %>
+        					<li><%= link_to "Log Off", destroy_user_session_path, method: :delete %></li>
+        			<% else %>
+        					<li><%= link_to "Log In", new_user_session_path %></li>
+      				<% end %>
+              <% if user_signed_in? %>
+                  <% @user = User.find(current_user.id) %>
+                      <% if @user.user_admin? %>
+        				    	<li><%= link_to "Add Jóias", new_jewel_path %></li>
+                  <% end %>
+      				<% end %>
+              <!-- Dropdown Trigger -->
+              <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categorias<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+          </div>
 
 			</ul>
 
 		</div>
 
-	</nav>
+        </nav>
+      </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <div class="container"
       <%= yield %>
-    </div>
-    <br><br><br><br><br>
-    <!-- Social Footer, Colour Matching Icons -->
-    <!-- Include Font Awesome Stylesheet in Header -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <!-- // -->
-    <div class="container">
 
-      <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-        <h3> Contato </h3>
-        <ul>
-            <li> Lorem Ipsum </li>
-            <li> Lorem Ipsum </a> </li>
-            <li> Lorem Ipsum </a> </li>
-            <li> Lorem Ipsum </a> </li>
-        </ul>
-      </div>
-      <hr>
-      <div class="text-right center-right">
-        <br><br>
-        <br />
-          <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
-          <a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
-          <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
-          <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
-      </div>
+      <!-- footer-->
+      <footer class="page-footer red lighten-3">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Conteudo</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2017 Copyright Malsay
+          </div>
+        </div>
+      </footer>
 
-    </div>
 
+      <!-- js-->
+      <script>
+        $(document).ready(function(){
+          $('.parallax').parallax();
+        });
+      </script>
 
   </body>
 </html>
-
-<script>
-$(document).ready(function(){
-    $(".dropdown").hover(
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
-            $(this).toggleClass('open');
-        },
-        function() {
-            $('.dropdown-menu', this).stop( true, true ).slideUp("slow");
-            $(this).toggleClass('open');
-        }
-    );
-});
-</script>

@@ -9,7 +9,6 @@ gem 'rails', '~> 5.0.2'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
 gem 'simple_form', '~> 3.4'
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -18,6 +17,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'paperclip', '~> 5.1'
+
+gem 'jquery-turbolinks'
+gem 'materialize-sass', '~> 0.98.2'
+gem 'materialize-form'
+gem 'material_icons'
 
 group :development, :test do
   gem 'byebug', platform: :mri
