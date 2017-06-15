@@ -8,7 +8,7 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
-gem 'simple_form', '~> 3.4'
+#gem 'simple_form', '~> 3.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -18,9 +18,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'paperclip', '~> 5.1'
 
+# gem 'slim', '~> 3.0', '>= 3.0.8'
 gem 'jquery-turbolinks'
-gem 'materialize-sass', '~> 0.98.2'
-gem 'materialize-form'
+gem 'materialize-sass' #, '~> 0.98.2'
+# gem 'materialize-form'
 gem 'material_icons'
 
 group :development, :test do
