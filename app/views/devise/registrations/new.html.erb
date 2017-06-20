@@ -1,56 +1,66 @@
-<div class="row">
+<section>
+  <br>
+	<div class="row">
+		<div class="col s4">
+		</div>
+		<div class="col s4">
 
-	<div class="col s4">
-	</div>
+			<div class="card hoverable">
 
-<div class="col s5">
+				<div class="card-content">
 
-	<div class="signup-form">
+          <span class="card-title center">Cadastro</span>
+					<div class="divider"></div>
+					<br>
 
-    <h2>Cadastro</h2>
+          <form class="simple_form new_user" action="/users" method="post">
 
-    </br></br>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+            <div class="form-inputs row">
 
-      <div class="row">
-				<div class="row">
-					<div class="input-field col s8">
-						<%= f.input :email, required: true, autofocus: true %>
-					</div>
-				</div>
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
 
-				<div class="row">
-					<div class="input-field col s8">
-						<%= f.input :password, label: "Senha", required: true, hint: ("#{@minimum_password_length} caracteres" if @minimum_password_length) %>
-					</div>
-				</div>
+                <div class="input-field col s12 email required user_email">
+									<i class="material-icons prefix">email</i>
+							    <label class="email required" for=""><abbr title="required">*</abbr> E-mail</label>
+							    <%= f.email_field :email%>
+							  </div>
 
-				<div class="row">
-					<div class="input-field col s8">
-							<%= f.input :password_confirmation, label: "Confirmar Senha", required: true %>
-					</div>
-				</div>
+                <div class="input-field col s12 password required user_password">
+									<i class="material-icons prefix">lock</i>
+                  <label data-hint="6 Characters Minimum" class="email required" for=""><abbr title="required">*</abbr> Senha</label>
+                  <%= f.password_field :password, autocomplete: "off" %>
+                </div>
 
+                <div class="input-field col s12 password required user_password">
+									<i class="material-icons prefix">lock</i>
+                  <label data-hint="6 Characters Minimum" class="email required" for=""><abbr title="required">*</abbr> Confirmar Senha</label>
+                  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                </div>
 
+                <div class="form-actions center">
+								  <div class="waves-effect waves-light btn red lighten-3">
+								    <%= f.submit "Salvar" %>
+								  </div>
+								</div>
+
+              <% end %>
+
+              <br><br>
+							<div class="divider"></div>
+							<br>
+							<%= render "devise/shared/links" %>
+
+            </div>
+
+          </form>
+
+        </div>
 
       </div>
 
-			<button class="btn waves-effect waves-light" type="submit">Confirmar
-				<i class="material-icons right">send</i>
-			</button>
-			<br>
-
-			<!--
-      <div class="form-actions">
-        <%= f.button :submit, "Confirmar", class: "btn-custom2" %>
-      </div>
-		-->
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+    </div>
 
   </div>
 
-</div>
-</div>
+</section>

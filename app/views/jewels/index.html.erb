@@ -1,26 +1,20 @@
-<h1 class="header center teal-text text-lighten-2"><%= params[:category] %></h1>
-
-</br></br>
-<% if @jewels.count == 0 %>
-
-  <h1> Não possui jóias nesta categoria </h1>
-
-<% else %>
-
-<div class="row">
-
-  <% @jewels.each do |jewel| %>
-
-    <div class="col s4">
-
-      <a href="/jewels/<%= jewel.id %>">
-        <%= image_tag jewel.jewel_img.url(:jewel_index), class: "jewel" %>
-      </a>
-
+ <div class="container">
+  <h1 class="header center pink-text text-darken-1"><%= params[:category] %></h1>
+  <% if @jewels.count == 0 %>
+    <h1> Não possui jóias nesta categoria </h1>
+  <% else %>
+    <div class="row">
+      <% @jewels.each do |jewel| %>
+        <div class="col s3">
+          <div class="card z-depth-5">
+            <div class="card-image">
+              <img src="<%= jewel.jewel_img.url(:jewel_index)%>" >
+              <span class="card-title"><%= jewel.title%></span>
+              <a  href="/jewels/<%= jewel.id %>" class="btn-floating halfway-fab waves-effect waves-light red lighten-2 pulse"><i class="material-icons">add</i></a>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-
   <% end %>
-
 </div>
-
-<% end %>

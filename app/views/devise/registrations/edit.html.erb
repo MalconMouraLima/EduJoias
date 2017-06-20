@@ -1,27 +1,72 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section>
+  <br>
+	<div class="row">
+		<div class="col s4">
+		</div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+		<div class="col s4">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+			<div class="card hoverable">
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+				<div class="card-content">
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+          <span class="card-title center">Editar</span>
+					<div class="divider"></div>
+					<br>
+
+          <form class="simple_form edit_user" action="/users" method="post">
+
+            <div class="form-inputs row">
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="input-field col s12 email required user_email">
+                  <i class="material-icons prefix">email</i>
+                  <label class="email required" for=""><abbr title="required">*</abbr> E-mail</label>
+                  <%= f.email_field :email%>
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                  <% end %>
+                </div>
+
+                <div class="input-field col s12 password required user_password">
+                  <i class="material-icons prefix">lock</i>
+                  <label data-hint="6 Characters Minimum" class="email required" for=""><abbr title="required">*</abbr> Senha</label>
+                  <%= f.password_field :password, autocomplete: "off", hint: "Deixe em branco se não quiser alterar" %>
+                </div>
+
+                <div class="input-field col s12 password required user_password">
+                  <i class="material-icons prefix">lock</i>
+                  <label data-hint="6 Characters Minimum" class="email required" for=""><abbr title="required">*</abbr> Confirmar Senha</label>
+                  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                </div>
+
+                <div class="input-field col s12 password required user_password">
+                  <i class="material-icons prefix">lock</i>
+                  <label data-hint="6 Characters Minimum" class="email required" for=""><abbr title="required">*</abbr> Confirmar Senha</label>
+                  <%= f.password_field :current_password, hint: "we need your current password to confirm your changes", required: true %>
+                </div>
+
+                <div class="form-actions center">
+                  <div class="waves-effect waves-light btn red lighten-3">
+                    <%= f.submit "Salvar" %>
+                  </div>
+                </div>
+
+              <% end %>
+
+              <br><br>
+              <div class="divider"></div>
+              <br>
+              <p>Infeliz? <%= link_to "Cancelar conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</section>

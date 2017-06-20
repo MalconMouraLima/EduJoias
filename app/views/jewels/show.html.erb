@@ -1,30 +1,34 @@
-<div class="row">
+<section>
 
-	<div class="col-md-4">
+	<div class="row">
 
-		<%= image_tag @jewel.jewel_img.url(:jewel_show), class: "jewel-show" %>
 
-	</div>
+		<div class="col m4">
 
-	<div class="col-md-8">
-
-		<div class="jewel-info">
-
-			<h2 class="jewel-title"><%= @jewel.title %></h2>
-			<div class="average-review-rating" data-score=<%= @average_review %>></div>
-			<span class="number-of-reviews">Baseado em <%= @jewel.reviews.count %> comentário(s) </span>
-			<p class="jewel-desc"><%= @jewel.description %></p>
+			<%= image_tag @jewel.jewel_img.url(:jewel_show)%>
 
 		</div>
+
+		<div class="col m8">
+
+			<div class="jewel-info">
+
+				<h2 class="jewel-title"><%= @jewel.title %></h2>
+				<div class="average-review-rating" data-score=<%= @average_review %>></div>
+				<span class="number-of-reviews">Baseado em <%= @jewel.reviews.count %> comentário(s) </span>
+				<p class="jewel-desc"><%= @jewel.description %></p>
+
+			</div>
+		</div>
+
+
 	</div>
 
-
-</div>
-
+</section>
 
 <div class="row">
 
-	<div class="col-md-4">
+	<div class="col m4">
 
 		<div class="reviews">
 
@@ -58,6 +62,8 @@
 
 </div>
 
+
+
 <script>
 	$('.review-rating').raty({
 		readOnly: true,
@@ -66,10 +72,7 @@
 		},
 		path: '/assets/'
 	});
-</script>
 
-
-<script>
 	$('.average-review-rating').raty({
 		readOnly: true,
 		path: '/assets/',

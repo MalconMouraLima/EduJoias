@@ -1,84 +1,71 @@
-<div class="row">
-  <form class="col s12">
-    <%= simple_form_for @jewel, :html => { :multipart => true } do |f| %>
+<section id="jewel">
+  <div class="container">
+      <h3> Nova Jóia</h3>
+      <div class="divider"></div>
+      <br>
 
-    <div class="input-field col s4">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-
-    <div class="input-field col s4">
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-    </div>
-
-      <!--
       <div class="row">
-        <div class="input-field col s4">
-          <div class="file-field input-field ">
-            <div class="btn waves-effect waves-light red lighten-3">
-              <span>Foto</span>
-              <input type="file">
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
+        <div class="col s12">
+          <%= form_for @jewel, :html => {:multipart => true} do |f| %>
+
+
+          <div class="row">
+            <div class="col s5">
+               <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Selecione uma categoria...") %>
+               <label for="">Categoria</label>
             </div>
           </div>
+
+          <div class="row">
+            <div class="file-field input-field gallery_picture col s5 ">
+              <div class="waves-effect waves-light btn red lighten-2">
+                <span>Foto</span>
+                <%= f.file_field :jewel_img %>
+              </div>
+              <div class="file-path-wrapper">
+                 <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s5">
+              <i class="material-icons prefix">star</i>
+              <label for="">Nome da Jóia</label>
+              <%= f.text_field :title%>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s10">
+              <i class="material-icons prefix">description</i>
+              <label for="">Descrição</label>
+              <%= f.text_area :description, class: "materialize-textarea"%>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <div class="waves-effect waves-light btn red lighten-2">
+              <i class="material-icons right">send</i>
+              <%= f.submit "Salvar" %>
+            </div>
+          </div>
+
+          <% end %>
         </div>
       </div>
 
-      <div class="row">
-        <div class="input-field col s4">
-          <select>
-            <option value="" disabled selected>Escolha uma categoria</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select>
-          <label>Categoria</label>
-        </div>
-      </div>
+  </div>
+</section>
 
-      <div class="row">
-        <div class="input-field col s4">
-          <input type="text" class="validate">
-          <label for="first_name">Nome da Jóias</label>
-        </div>
-      </div>
-      -->
-
-      <!--
-      <div class="row">
-        <div class="input-field col s4">
-          <textarea class="materialize-textarea"></textarea>
-          <label for="first_name">Descrição</label>
-        </div>
-      </div>
-
-      <a class="waves-effect waves-light btn red lighten-3">Salvar</a>
-      -->
-
-    <% end %>
-  </form>
-</div>
-<br><br><br><br>
-<!--
-<%= simple_form_for @jewel, :html => { :multipart => true } do |f| %>
-
- <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Selecione uma categoria...") %>
-
- <%= f.file_field :jewel_img %>
- <%= f.input :title, label: "Nome da Jóia" %>
- <%= f.input :description, label: "Descrição" %>
- <%= f.button :submit, "Salvar", :class => "btn btn-custom2" %>
-<% end %>
-
-</br>
-<%= link_to "Voltar", root_path %>
--->
 
 <script>
-    $(document).ready(function() {
-    $('select').material_select();
-    });
+
+  $(document).ready(function() {
+   $('select').material_select();
+  });
+
+  $(document).ready(function() {
+    $('input#input_text, textarea#textarea1').characterCounter();
+  });
 </script>
